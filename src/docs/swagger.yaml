@@ -1,0 +1,86 @@
+openapi: 3.0.0
+info:
+  title: Fintech Dashboard API
+  description: Finance Data Processing and Access Control System
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000/api/v1
+    description: Local server
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Error:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+paths:
+  /auth/login:
+    post:
+      summary: Login user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@fintech.com
+                password:
+                  type: string
+                  example: admin123
+      responses:
+        "200":
+          description: Successful login
+  /dashboard:
+    get:
+      summary: Get dashboard insights
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Dashboard data
+  /records:
+    get:
+      summary: Get paginated financial records
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: List of records
+    post:
+      summary: Create a new financial record
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+                  example: 1500
+                type:
+                  type: string
+                  enum: [income, expense]
+                  example: income
+                category:
+                  type: string
+                  example: Salary
+                notes:
+                  type: string
+                  example: Monthly salary
+      responses:
+        "201":
+          description: Record created

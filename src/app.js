@@ -23,6 +23,14 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // API Routes
 app.use("/api/v1", indexRoutes);
 
+// Root endpoint
+app.get("/", (req, res) => {
+  res.json({
+    status: "success",
+    message: "Welcome to the Fintech Dashboard API. Documentation is available at /api-docs",
+  });
+});
+
 // 404 Handler
 app.use((req, res, next) => {
   res.status(404).json({

@@ -59,3 +59,21 @@ Once the server is running, navigate to:
 to test endpoints via the Swagger UI.
 
 Alternatively, import the included `postman_collection.json` into Postman.
+
+## Deployment
+
+The project is fully configured to be instantly deployed on [Render.com](https://render.com). It comes with a `render.yaml` blueprint.
+
+### 1. Database Setup (MongoDB Atlas)
+Render requires a cloud database. 
+1. Create a free cluster on [MongoDB Atlas](https://www.mongodb.com/atlas).
+2. Go to **Network Access** and configure it to **ALLOW ACCESS FROM ANYWHERE** (`0.0.0.0/0`). *(Crucial for Render!)*
+3. Go to **Database Access** and create a user. Copy your connection string matching:  
+   `mongodb+srv://<username>:<password>@clusterX.XXXX.mongodb.net/?appName=ClusterX`
+4. Make sure to replace `<password>` with the actual database user password you created, ensuring you remove the `<` and `>` arrow markers.
+
+### 2. Live Hosting (Render)
+1. Go to your [Render Dashboard](https://dashboard.render.com/) and click **New +** -> **Blueprint**.
+2. Connect this GitHub repository.
+3. Render will auto-detect the configuration and ask you to submit your `MONGODB_URI`. Paste the complete Atlas connection string constructed above.
+4. Click **Apply**. Render will install dependencies and start your live server natively!

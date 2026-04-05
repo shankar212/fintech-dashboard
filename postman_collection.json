@@ -1,0 +1,59 @@
+{
+  "info": {
+    "name": "Fintech Dashboard",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@fintech.com\",\n  \"password\": \"password123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:5000/api/v1/auth/login",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "v1", "auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "item": [
+        {
+          "name": "Get Dashboard Insights",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer <YOUR_TOKEN>",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:5000/api/v1/dashboard",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "v1", "dashboard"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

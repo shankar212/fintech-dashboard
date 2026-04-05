@@ -1,0 +1,29 @@
+const Joi = require("joi");
+
+const validate = (schema) => (req, res, next) => {
+  const validSchema = Object.keys(schema).reduce((acc, key) => {
+    if (req[key]) acc[key] = schema[key];
+    return acc;
+  }, {});
+  
+  const object = Object.keys(validSchema).reduce((acc, key) => {
+    if (Object.keys(req).includes(key)) acc[key] = req[key];
+    return acc;
+  }, {});
+
+  const { value, error } = Joi.compile(validSchema)
+    .prefs({ errors: { label: "key" }, abortEarly: false })
+    .validate(object);
+
+  if (error) {
+    const errorMessage = error.details.map((details) => details.message).join(", ");
+    return res.status(400).json({
+      status: "error",
+      message: errorMessage,
+    });
+  }
+  Object.assign(req, value);
+  return next();
+};
+
+module.exports = validate;

@@ -1,6 +1,7 @@
 # Finance Data Processing and Access Control System
 
-[![Live Demo](https://img.shields.io/badge/Live_API_Docs-Swagger_UI-85ea2d?style=for-the-badge&logo=swagger)](https://fintech-dashboard-wixc.onrender.com/api-docs)
+[![Live Demo](https://img.shields.io/badge/Live_API_Docs-Swagger_UI-85ea2d?style=for-the-badge&logo=swagger)](https://fintech-dashboard-wixc.onrender.com/api-docs)  
+**Live API Link:** [https://fintech-dashboard-wixc.onrender.com/api-docs](https://fintech-dashboard-wixc.onrender.com/api-docs)
 
 A complete production-quality REST API for a Fintech dashboard built with Node.js, Express, and MongoDB.
 

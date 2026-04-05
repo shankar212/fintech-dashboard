@@ -5,7 +5,7 @@ const dashboardController = require("../controllers/dashboard.controller");
 
 const router = express.Router();
 
-// Allowed for analysts and admins
-router.get("/", auth, roleAuth("analyst", "admin"), dashboardController.getDashboardData);
+// Allowed for all active roles (viewer, analyst, admin)
+router.get("/", auth, roleAuth("viewer", "analyst", "admin"), dashboardController.getDashboardData);
 
 module.exports = router;

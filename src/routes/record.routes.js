@@ -17,9 +17,9 @@ const router = express.Router();
 // analyst: read + dashboard insights
 // admin: full access
 
-// Read access for everyone who is at least a viewer (viewer, analyst, admin)
-router.get("/", auth, validate(recordValidation.getRecords), recordController.getRecords);
-router.get("/:id", auth, validate(recordValidation.getRecord), recordController.getRecord);
+// Read access for analysts and admins (viewers restricted to dashboard only)
+router.get("/", auth, roleAuth("analyst", "admin"), validate(recordValidation.getRecords), recordController.getRecords);
+router.get("/:id", auth, roleAuth("analyst", "admin"), validate(recordValidation.getRecord), recordController.getRecord);
 
 // Write access only to admin (based on the instruction 'analyst: read + dashboard insights', 'admin: full access')
 router.post("/", auth, roleAuth("admin"), validate(recordValidation.createRecord), recordController.createRecord);
